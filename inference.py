@@ -5,6 +5,7 @@ from PIL import Image
 from matplotlib import pyplot as plt
 from torch import nn
 from transformers import SegformerFeatureExtractor, SegformerForSemanticSegmentation
+import fire
 
 
 def inference(model_path: str = 'model_weights.pth', img_path: str = 'dataset/train/images/img_0002.jpeg',
@@ -36,7 +37,7 @@ def inference(model_path: str = 'model_weights.pth', img_path: str = 'dataset/tr
                                                              label2id=label2id,
                                                              reshape_last_stage=True)
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-    model.load_state_dict(torch.load(model_path,map_location='cpu'))
+    model.load_state_dict(torch.load(model_path, map_location='cpu'))
 
     feature_extractor_inference = SegformerFeatureExtractor(do_random_crop=False, do_pad=False)
 
@@ -70,4 +71,4 @@ def inference(model_path: str = 'model_weights.pth', img_path: str = 'dataset/tr
 
 
 if __name__ == '__main__':
-    inference()
+    fire.Fire(inference)

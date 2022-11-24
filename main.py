@@ -98,4 +98,4 @@ def train(epochs: int = 10, data_path: str = 'dataset', batch_size: int = 2):
 
 
 if __name__ == '__main__':
-    fire.Fire(train())
+    fire.Fire(train)
