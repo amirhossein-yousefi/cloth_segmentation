@@ -21,7 +21,7 @@ def get_segmentor(model_path: str = 'model_weights.pth') -> nn.Module:
                                                              reshape_last_stage=True)
     model.load_state_dict(torch.load(model_path, map_location='cpu'))
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-    model=model.to(device)
+    model = model.to(device)
     model.eval()
     return model
 
